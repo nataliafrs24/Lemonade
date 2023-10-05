@@ -58,7 +58,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // Memasang Tema aplikasi
             AppTheme() {
+                // Untuk memanggil fungsi lemonadeapp
                 LemonadeApp()
             }
         }
@@ -68,11 +70,11 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LemonadeApp() {
-
+    // ini adalah variabel untuk mengikuti langkah saat ini dalam pembuatan lemonade
     var currentStep by remember { mutableStateOf(1) }
-
+    // ini adalah variabel untuk menghitung jumlah perasan lemon yang tersisa
     var squeezeCount by remember { mutableStateOf(0) }
-
+    // Menggunakan AppBar di tengah layar
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -98,6 +100,7 @@ fun LemonadeApp() {
                 .background(MaterialTheme.colorScheme.tertiaryContainer),
             color = MaterialTheme.colorScheme.background
         ) {
+            // Memilih tampilan berdasarkan langkah saat ini
             when (currentStep) {
                 1 -> {
                     LemonTextAndImage(
@@ -106,6 +109,7 @@ fun LemonadeApp() {
                         contentDescriptionResourceId = R.string.lemon_tree_content_description,
                         onImageClick = {
                             currentStep = 2
+                            // Mengacak jumlah perasan lemon yang diperlukan
                             squeezeCount = (2..4).random()
                         }
                     )
@@ -191,7 +195,9 @@ fun LemonTextAndImage(
 @Preview
 @Composable
 fun LemonPreview() {
+    // Memasang tema apliksi untuk tammpilan pratinjau
     AppTheme() {
+        // Memanggil fungsi Lemonade untuk tampilan pratinjau
         LemonadeApp()
     }
 }
